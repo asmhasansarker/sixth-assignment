@@ -21,6 +21,10 @@
   display: none;
 }
 
+.gallery a{
+  text-decoration: none;
+}
+
 .slider-item {
   display: none;
 }

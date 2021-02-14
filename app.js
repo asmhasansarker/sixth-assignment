@@ -17,21 +17,38 @@ const KEY = '15674931-a9d714b6e9d654524df198e00&q';
 // show images 
 const showImages = (images) => {
   unknownArea.innerHTML = "";
+  gallery.innerHTML = '';
+  galleryHeader.style.display = 'none';
   if (images.length < 1) {
     const unknown = document.getElementById('search').value;
     unknownArea.style.display = 'block';
-    unknownArea.innerHTML = `<h4> Your search - ${unknown} - did not match any documents</h4>`;
+    unknownArea.innerHTML = `<h4> Your search - ${unknown} - did not match any documents</h4>
+    <h5>Suggestions:</h5>
+    <ul>
+      <li>Make sure that all words are spelled correctly.</li>
+      <li>Try different keywords.</li>
+      <li>Try more general keywords.</li>
+
+    </ul>
+
+
+    `;
     
   }
   else {
     imagesArea.style.display = 'block';
-    gallery.innerHTML = '';
+    
     // show gallery title
     galleryHeader.style.display = 'flex';
     images.forEach(image => {
       let div = document.createElement('div');
       div.className = 'col-lg-3 col-md-4 col-xs-6 img-item mb-2';
-      div.innerHTML = ` <img class="img-fluid img-thumbnail" onclick=selectItem(event,"${image.webformatURL}") src="${image.webformatURL}" alt="${image.tags}">`;
+      div.innerHTML = ` <img class="img-fluid img-thumbnail" onclick=selectItem(event,"${image.webformatURL}") src="${image.webformatURL}" alt="${image.tags}">
+      
+      <button class="btn btn-outline-light "> <a target="_blank" href="${image.largeImageURL}"> View Full Images </a> </button>
+      
+      
+      `;
       gallery.appendChild(div)
     })
   }
